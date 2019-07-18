@@ -1,15 +1,17 @@
-<h1>{{ message }}</h1>
-<div *ngFor="let number of numbers" >
-    <p [appEvenOdd]="number" (click)="onMouseClick(number)" >{{number}}</p>
-</div>
+<div class="background-component">
+    <h1>{{ message }}</h1>
+    <div *ngFor="let number of numbers">
+        <p [appEvenOdd]="number" (click)="onMouseClick(number)">{{number}}</p>
+    </div>
 
-<input type="text" [(ngModel)]="username" >
+    <input type="text" [(ngModel)]="username">
 
-<h2>Hello {{username}}</h2>
+    <h2>Hello {{username}}</h2>
 
 
-<div [ngSwitch]="condition" >
-    <p *ngSwitchCase="true">True</p>
-    <p *ngSwitchCase="false">False</p>
-    <p *ngSwitchDefault>Default</p>
+    <div [ngSwitch]="condition">
+        <p *ngSwitchCase="true">True</p>
+        <p *ngSwitchCase="false">False</p>
+        <p *ngSwitchDefault>Default</p>
+    </div>
 </div>
