@@ -6,12 +6,34 @@
 
     <input type="text" [(ngModel)]="username">
 
-    <h2>Hello {{username}}</h2>
+    <h2 [class.background]="isBackground">Hello {{username}}</h2>
+    {{username | characterCount:3:1}}
 
+    <button mat-raised-button color="primary" (click)="toggleBackground()">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <h1>{{date | date:"dd/MM/yyyy"}}</h1>
 
     <div [ngSwitch]="condition">
         <p *ngSwitchCase="true">True</p>
         <p *ngSwitchCase="false">False</p>
         <p *ngSwitchDefault>Default</p>
     </div>
+</div>
+
+<div style="min-height: 300px;" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutAlign="center stretch" fxLayoutAlign.lt-md="start center">
+    <div fxFlex="50%" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+        <h1 fxFlex="30%">1</h1>
+        <h1 fxFlex="10%">2</h1>
+        <h1 fxFlex="10%">3</h1>
+        <h1 fxFlex="10%">4</h1>
+    </div>
+    <h1 fxFlex="10%">A</h1>
+    <h1 fxFlex="10%">B</h1>
+    <h1 fxFlex="10%">C</h1>
+</div>
+
+<div [class]="themeClassName">
+    <mat-card>HI...</mat-card>
 </div>

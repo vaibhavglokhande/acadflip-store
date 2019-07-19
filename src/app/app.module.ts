@@ -7,18 +7,26 @@ import { AppComponent } from './app.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { EvenOddDirective } from './even-odd/even-odd.directive';
 import { NewComponentComponent } from './new-component/new-component.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MaterialImportsModule } from './material-imports/material-imports.module';
+import { CharacterCountPipe } from './character-count/character-count.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldComponent,
     EvenOddDirective,
-    NewComponentComponent
+    NewComponentComponent,
+    CharacterCountPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialImportsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
