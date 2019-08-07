@@ -1,0 +1,57 @@
+<!-- Template driven form -->
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" style="background-color: #eeeeee; padding: 10px;">
+    <form #signUpForm="ngForm" (submit)="saveUserDetails(signUpForm.value);signUpForm.reset();">
+        <mat-card style="min-width: 300px;">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Sign Up</mat-card-title>
+                    <mat-card-subtitle>Enter your personal details.</mat-card-subtitle>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <p>
+                    <mat-form-field>
+                        <mat-label>Full Name</mat-label>
+                        <input #name="ngModel" ngModel matInput name="name" type="text" required>
+                        <mat-hint>First Name + Last Name</mat-hint>
+                        <mat-icon matSuffix class="mat-18">face</mat-icon>
+                        <mat-error>Name is required.</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input #address="ngModel" ngModel matInput name="address" type="text">
+                        <mat-hint>Your communication address</mat-hint>
+                        <mat-icon matSuffix class="mat-18">location_city</mat-icon>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input #email="ngModel" ngModel matInput name="email" type="email" required email>
+                        <mat-hint>mail@emailserver.com</mat-hint>
+                        <mat-icon matSuffix class="mat-18">email</mat-icon>
+                        <mat-error *ngIf="!email.hasError('email') && email.touched">Email is required.</mat-error>
+                        <mat-error *ngIf="email.hasError('email')">Invalid email. Use the format: mail@emailserver</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input #phone="ngModel" ngModel minlength="10" maxlength="13" matInput name="phone" type="tel" pattern="^(([6-9]{1}[0-9]{9})|([+][0-9]{2}[6-9]{1}[0-9]{9}))$">
+                        <mat-hint>Your Phone number.</mat-hint>
+                        <mat-icon matSuffix class="mat-18">phone</mat-icon>
+                        <mat-error *ngIf="phone.hasError('pattern')">Invalid number</mat-error>
+                    </mat-form-field>
+                </p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button [disabled]="!signUpForm.valid" mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+            <mat-card-footer fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <footer style="font-size: 12px; color:grey">This is template driven form example</footer>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+</div>

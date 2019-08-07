@@ -1,0 +1,133 @@
+<div style="background-color: #eeeeee" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-card style="min-width: 300px;">
+        <mat-card-header>
+            <mat-card-title>Concert</mat-card-title>
+            <mat-card-subtitle>Register Here...</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-vertical-stepper [linear]="true">
+                <mat-step label="Sign Up Yourself!" [stepControl]="concertSignUpForm">
+                    <form [formGroup]="concertSignUpForm">
+                        <div formGroupName="userInfo" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <mat-form-field appearance="outline">
+                                <mat-label>First Name</mat-label>
+                                <input matInput type="text" required formControlName="firstname">
+                                <mat-error>First Name is required.</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput type="text" formControlName="lastname">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Age is just a number.</mat-label>
+                                <input matInput type="number" required formControlName="age">
+                                <mat-error>Min required age is 5.</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <mat-form-field appearance="outline">
+                            <mat-select required formControlName="ticketType" placeholder="Ticket">
+                                <mat-option *ngFor="let ticket of ticketType" [value]="ticket.id">
+                                    {{ticket.type}} &nbsp; {{ticket.price}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                    <div>
+                        <button [disabled]="!concertSignUpForm.valid" (click)="submitConcertSignUpForm()" mat-raised-button matStepperNext color="primary">Next</button>
+                    </div>
+
+
+                </mat-step>
+                <mat-step label="Bring in others!" [stepControl]="concertRegistrationForm">
+                    <form [formGroup]="concertRegistrationForm">
+                        <div formArrayName="users" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <div *ngIf="concertRegistrationForm.controls.users.controls.length !== 0">
+                                <div *ngFor="let userData of concertRegistrationForm.controls.users.controls;let i=index;">
+                                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                                        <div [formGroupName]="i">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>First Name</mat-label>
+                                                <input matInput type="text" required formControlName="firstname">
+                                                <mat-error>First Name is required.</mat-error>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Last Name</mat-label>
+                                                <input matInput type="text " formControlName="lastname">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Age is just a number.</mat-label>
+                                                <input matInput type="number " required formControlName="age">
+                                                <mat-error>Min required age is 5.</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div *ngIf="i!==0">
+                                            <button (click)="removeUser(i)" mat-icon-button color="primary">
+                                                <mat-icon class="mat-18">remove</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button (click)="addUser() " mat-fab><mat-icon>add</mat-icon></button>
+                        </div>
+
+
+                    </form>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <button mat-raised-button matStepperPrevious color="accent">Back</button>
+                        <button (click)="submitConcertRegistrationForm()" [disabled]="!concertRegistrationForm.valid" mat-raised-button matStepperNext color="primary">Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="It 's a small price to pay!">
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                            <div fxFlex="70%">
+                                Ticket ({{userSelectedTicketType}})
+                            </div>
+                            <div fxFlex="20%">{{ticketValue}} x {{userCount}} </div>
+                            <div fxFlex="10%">{{intermediateTicketTotal}}</div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                            <div fxFlex="70%">
+                                Discount (For below age 15.)
+                            </div>
+                            <div fxFlex="20%">@10% </div>
+                            <div fxFlex="10%">- {{discount}}</div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                            <div fxFlex="70%">
+                                Tax
+                            </div>
+                            <div fxFlex="20%">@18% </div>
+                            <div fxFlex="10%"> + {{tax}}</div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                            <div fxFlex="70%">
+                                Grand Total
+                            </div>
+                            <div fxFlex="20%"></div>
+                            <div fxFlex="10%">{{grandTotal}}</div>
+                        </div>
+
+                    </div>
+                    <button mat-raised-button matStepperPrevious color="primary">Back</button>
+                </mat-step>
+            </mat-vertical-stepper>
+        </mat-card-content>
+        <mat-card-footer fxLayout="row" fxLayoutAlign="center center">
+            <p style="font-size: 12px; color: grey;">This is an example of advanced reactive forms</p>
+        </mat-card-footer>
+    </mat-card>
+
+</div>

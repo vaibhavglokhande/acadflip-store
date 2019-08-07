@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialImportsModule } from './material-imports/material-imports.module';
 import { CharacterCountPipe } from './character-count/character-count.pipe';
+import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { ReactiveFormAdvancedComponent } from './reactive-form-advanced/reactive-form-advanced.component';
 
 
 @NgModule({
@@ -19,14 +22,18 @@ import { CharacterCountPipe } from './character-count/character-count.pipe';
     HelloWorldComponent,
     EvenOddDirective,
     NewComponentComponent,
-    CharacterCountPipe
+    CharacterCountPipe,
+    TemplateDrivenFormComponent,
+    ReactiveFormComponent,
+    ReactiveFormAdvancedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialImportsModule
+    MaterialImportsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
