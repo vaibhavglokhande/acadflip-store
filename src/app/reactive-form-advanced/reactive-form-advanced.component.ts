@@ -38,11 +38,11 @@ export class ReactiveFormAdvancedComponent implements OnInit {
 
   ticketTotal: number = 0;
 
-  userCount:number = 0;
+  userCount: number = 0;
 
   intermediateTicketTotal: number = 0;
 
-  userSelectedTicketType;  
+  userSelectedTicketType;
 
   private readonly DISCOUNT_VALUE: number = 0.1;
 
@@ -101,12 +101,12 @@ export class ReactiveFormAdvancedComponent implements OnInit {
   submitConcertSignUpForm() {
     this.userSelectedTicketTypeId = this.concertSignUpForm.controls.ticketType.value;
     const userInfo: UserInfo = this.concertSignUpForm.controls.userInfo.value;
-    if((this.concertRegistrationForm.controls.users as FormArray).length > 0){
+    if ((this.concertRegistrationForm.controls.users as FormArray).length > 0) {
       (this.concertRegistrationForm.controls.users as FormArray).at(0).setValue(userInfo);
-    }else{
+    } else {
       (this.concertRegistrationForm.controls.users as FormArray).push(this.getUserInfoFormControl(userInfo));
     }
-    
+
   }
 
   /**
@@ -133,15 +133,15 @@ export class ReactiveFormAdvancedComponent implements OnInit {
 
     this.discount = 0;
 
-    this.tax  = 0;
+    this.tax = 0;
 
-    this.grandTotal  = 0;
+    this.grandTotal = 0;
 
-    this.ticketTotal  = 0;
+    this.ticketTotal = 0;
 
     this.userCount = 0;
 
-    this.intermediateTicketTotal  = 0;
+    this.intermediateTicketTotal = 0;
 
     const ticket = this.ticketType.find(item => item.id === this.userSelectedTicketTypeId);
     this.ticketValue = ticket.price;
@@ -157,7 +157,7 @@ export class ReactiveFormAdvancedComponent implements OnInit {
       else {
         this.ticketTotal += ticket.price;
       }
-      this.intermediateTicketTotal = ticket.price;
+      this.intermediateTicketTotal += ticket.price; // Bug fix: Add ticket price to previous intermediateTicketTotal.
     }); // Calculate ticket value.
 
     this.tax = this.ticketTotal * this.TAX_VALUE;
